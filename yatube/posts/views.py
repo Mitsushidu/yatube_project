@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import Post
+from django.shortcuts import render, get_object_or_404
+from .models import Post, Group
 # Create your views here.
 
 
@@ -14,10 +14,12 @@ def index(request):
     return render(request, template, context)
 
 
-def group_list(request):
-    template = 'posts/group_list.html'
-    description = 'Здесь будет информация о группах проекта Yatube'
+def group_posts(request, slug):
+    template = 'posts/group_posts.html'
+    group = get_object_or_404(Group, slug=slug)
+    posts = Post.objects.filter(group=group).order_by('-pub_date')[:10]
     context = {
-        'description': description,
+        'posts': posts,
+        'group': group,
     }
     return render(request, template, context)
