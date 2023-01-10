@@ -1,0 +1,21 @@
+<!-- templates/base.html -->
+<!DOCTYPE html> 
+<html lang="ru">          
+  <head>
+    {% block title %}<title>Site</title>{% endblock %}
+  <body>       
+    <header>
+      {% block header %}
+      {% endblock header %}
+    </header>
+    <main>
+      {% block content %}
+        
+      {% endblock %}
+    </main>
+    <footer>
+      {% block footer %}
+      {% endblock footer %}
+    </footer>
+  </body>
+</html> 
